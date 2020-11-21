@@ -1,15 +1,52 @@
-Algoritmo pelea
-	Definir vida_jug, jug, ene1, ataq_ene1 Como Entero;
-	ataq_ene1 = aleatorio (1,3);
-	ene1 = 50;
+Algoritmo pelea_contra_calaca
+	Definir vida_jug, jug, ene1, ataq_ene1, n_pocs, poc, golpe Como Entero;
+	n_pocs = 5;
+	poc = 5;
+	ene1 = aleatorio(40,70);
 	vida_jug = 100;
 	Escribir 'Te encontraste con una calaca, pelea';
+	Escribir "";
 	Repetir
-		Escribir e lo que quieres hacer";
+		ataq_ene1 = aleatorio (0,8);
+		golpe = aleatorio (1,5);
+		Escribir "1.- Golpe";
+		Escribir "2.- Inventario";
+		Escribir "";
 		Leer jug;
-	Hasta Que ene1 = 100
-	
-	
-	
-	
+		Segun jug
+			1:
+				Escribir "El enemigo recibió ", golpe, " de daño";
+				ene1 = ene1 - golpe;
+				Escribir "El enemigo ahora tiene ", ene1, " de vida";
+				Escribir "";
+			2:
+				Escribir "Tienes ", n_pocs, " pociones, ¿quieres curarte?';
+				Escribir "1.- Sí";
+				Escribir "2.- No";
+				leer jug;
+				Si jug = 1
+					si n_pocs > 0
+						vida_jug = vida_jug + poc;
+						n_pocs = n_pocs - 1;
+						Escribir "Ahora tienes ", vida_jug, " de vida";
+						Escribir "";
+					SiNo
+						Escribir "Ya no tienes pociones";
+						Escribir "";
+					FinSi
+				FinSi
+		FinSegun
+		Si ene1 > 0
+			Escribir "El enemigo atacó, recibiste ", ataq_ene1, " de daño';
+			vida_jug = vida_jug - ataq_ene1;
+			Escribir "Ahora tienes ", vida_jug, " de vida";
+			Escribir "";
+		FinSi
+	Hasta Que ene1 <= 0 o vida_jug <= 0
+	Si ene1 <= 0
+		Escribir "Derrotaste a la calaca";
+	FinSi
+	Si vida_jug <= 0 
+		Escribir "Perdiste, reinicia el juego";
+	FinSi
 FinAlgoritmo
